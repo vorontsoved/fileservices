@@ -1,4 +1,4 @@
-package uploadFile
+package fileSystem
 
 import (
 	"context"

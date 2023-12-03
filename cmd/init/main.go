@@ -1,6 +1,7 @@
-package init
+package main
 
 import (
+	"fileservices/internal/app"
 	"fileservices/internal/config"
 	"log/slog"
 	"os"
@@ -19,6 +20,9 @@ func main() {
 
 	log.Info("starting application", slog.Any("cfg", cfg))
 
+	application := app.New(log, cfg.GRPC.Port, cfg.StoragePath)
+
+	application.GRPCSrv.MustRun()
 }
 
 func setupLogger(env string) *slog.Logger {
