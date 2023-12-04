@@ -15,7 +15,7 @@ func RegisterServerAPI(gRPC *grpc.Server) {
 }
 
 func (s *serverAPI) Upload(ctx context.Context, req *fsv1.FileUploadRequest) (*fsv1.FileUploadResponse, error) {
-	panic("implement me")
+	return &fsv1.FileUploadResponse{Success: true, Message: "Yoyu"}, nil
 }
 
 func (s *serverAPI) Browse(ctx context.Context, req *fsv1.Empty) (*fsv1.FileBrowseResponse, error) {
