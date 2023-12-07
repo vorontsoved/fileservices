@@ -22,7 +22,10 @@ func main() {
 
 	log.Info("starting application", slog.Any("cfg", cfg))
 
-	application := app.New(log, cfg.GRPC.Port, cfg.StoragePath)
+	application, err := app.New(log, cfg)
+	if err != nil {
+		log.Info("failed init app: %v", err)
+	}
 
 	go application.GRPCSrv.MustRun()
 
@@ -32,11 +35,11 @@ func main() {
 
 	sign := <-stop //стоим тут пока не выполнитя сигнал
 
-	log.Info("stopping applicstion", slog.String("sigmal", sign.String()))
+	log.Info("stopping gRPC applicstion", slog.String("sigmal", sign.String()))
 
 	application.GRPCSrv.Stop()
 
-	log.Info("application stop")
+	log.Info("gRPC application stop")
 
 }
 
