@@ -1,5 +1,4 @@
 env: "local"
-migration_path: ".migrations"
 grpc:
   port: 44044
   timeout: 10h

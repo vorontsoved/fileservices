@@ -8,11 +8,11 @@ import (
 )
 
 type Config struct {
-	Env           string         `yaml:"env" env-default:"local"`
-	StoragePath   string         `yaml:"storage_path" env-required:"true"`
-	MigrationPath string         `yaml:"storage_path" env-required:"true"`
-	GRPC          GRPCConfig     `yaml:"grpc"`
-	Postgres      PostgresConfig `yaml:"postgres"`
+	Env string `yaml:"env" env-default:"local"`
+	//StoragePath   string         `yaml:"storage_path" env-required:"true"`
+	//MigrationPath string         `yaml:"storage_path" env-required:"true"`
+	GRPC     GRPCConfig     `yaml:"grpc"`
+	Postgres PostgresConfig `yaml:"postgres"`
 }
 
 type PostgresConfig struct {

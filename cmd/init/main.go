@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fileservices/internal/app"
 	"fileservices/internal/config"
 	"log/slog"
@@ -38,6 +39,9 @@ func main() {
 	log.Info("stopping gRPC applicstion", slog.String("sigmal", sign.String()))
 
 	application.GRPCSrv.Stop()
+
+	log.Info("stopping postgres", slog.String("sigmal", sign.String()))
+	application.DB.Close(context.Background())
 
 	log.Info("gRPC application stop")
 
