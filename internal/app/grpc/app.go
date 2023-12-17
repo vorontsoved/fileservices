@@ -14,7 +14,7 @@ type App struct {
 	port       int
 }
 
-func New(log *slog.Logger, fileService fileSystemGRPC.UploadService, port int) *App {
+func New(log *slog.Logger, fileService fileSystemGRPC.FileService, port int) *App {
 	gRPCServer := grpc.NewServer()
 	fileSystemGRPC.RegisterServerAPI(gRPCServer, fileService)
 

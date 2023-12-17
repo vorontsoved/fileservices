@@ -5,13 +5,12 @@ import (
 	"fileservices/internal/config"
 	"fileservices/internal/postgres"
 	"fileservices/internal/services/fileServices"
-	"github.com/jackc/pgx/v5"
 	"log/slog"
 )
 
 type App struct {
 	GRPCSrv *grpcapp.App
-	DB      *pgx.Conn
+	DB      *postgres.Postgres
 }
 
 func New(log *slog.Logger, cfg *config.Config) (*App, error) {
@@ -20,8 +19,7 @@ func New(log *slog.Logger, cfg *config.Config) (*App, error) {
 		return nil, err
 	}
 
-	fileService := fileServices.New(log, &postgres.Postgres{}) // Передайте экземпляр Postgres в качестве FileSaver
-
+	fileService := fileServices.New(log, db)
 	grpcApp := grpcapp.New(log, fileService, cfg.GRPC.Port)
 
 	return &App{
